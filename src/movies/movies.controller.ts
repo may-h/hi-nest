@@ -35,10 +35,7 @@ export class MoviesController {
     //@Put() - Update Whole Recourse 
     @Patch("/:id")  //Update Part of Resource 
     path(@Param("id") movieId: string, @Body() updateData) {
-        return {
-            updatedMovie : movieId,
-            ...updateData,
-        };
+        return this.moviesService.update(movieId, updateData);
     }
 
 }
