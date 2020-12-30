@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity'
 
 @Injectable()
@@ -30,7 +31,7 @@ export class MoviesService {
         });
     }
 
-    update(id: number, updateData: CreateMovieDto) {
+    update(id: number, updateData: UpdateMovieDto) {
         const movie = this.getOne(id); //기존 데이터 백업
         this.deleteOne(id); // 기존 데이터 삭제 
         this.movies.push({...movie, ...updateData}); //기존 데이터에 업데이트 데이터 덮어쓰기 
