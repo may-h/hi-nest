@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Res, Req } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -7,10 +7,11 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 @Controller('movies')
 export class MoviesController {
     //Access to Service 
+    //의존성(Dependency) 주입 
     constructor(private readonly moviesService: MoviesService) {}
 
     @Get() 
-    getAll(): Movie[] {
+    getAll(@Req() req, @Res() res): Movie[] {
         return this.moviesService.getAll();
     }
 
